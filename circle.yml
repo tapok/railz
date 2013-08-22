@@ -1,3 +1,5 @@
 test:
+  pre:
+    - env
   override:
     - patterns=lib,app rake rubocop
