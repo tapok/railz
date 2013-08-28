@@ -4,4 +4,7 @@ class Street
 
   def type
   end
+
+  def city
+  end
 end
