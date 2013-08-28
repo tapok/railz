@@ -7,4 +7,7 @@ class Street
 
   def city
   end
+
+  def district
+  end
 end
