@@ -3,9 +3,8 @@ require 'rubocop/rake_task'
 
 desc 'Run RuboCop on the project directory'
 Rubocop::RakeTask.new(:syntax) do |task|
-  #TODO: stop if PATTERNS is empty
-  patterns = (ENV['PATTERNS'] || []).split(',')
-  patterns = [__FILE__] if patterns.empty?
+  patterns = (ENV['PATTERNS'] || []).split(',') << __FILE__
+  
   task.patterns = patterns
   task.fail_on_error = true
   puts '==Files==', task.patterns.inspect, '=========', ''
