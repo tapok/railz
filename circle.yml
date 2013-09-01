@@ -1,3 +1,14 @@
+machine:
+  environment:
+    BUNDLE_GEMFILE: Gemfile.circle
+    RAKEFILE: Rakefile.circle
+
+dependencies:
+  pre:
+    - ruby -v
+    - gem install bundler rake
+
 test:
   override:
-    - env #patterns=lib,app rake rubocop
+    - env 
+    - "PATTERNS=lib bundle exec rake -f #{RAKEFILE} check"
