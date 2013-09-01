@@ -18,4 +18,4 @@ database:
 
 test:
   override: 
-    - "PATTERNS=lib bundle exec rake -f $RAKEFILE check"
+    - "PATTERNS=$(git diff --name-only --no-merges master..) bundle exec rake -f $RAKEFILE check"
