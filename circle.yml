@@ -14,9 +14,8 @@ dependencies:
 
 database:
   override:
-    -
+    - env
 
 test:
-  override:
-    - env 
+  override: 
     - "PATTERNS=lib bundle exec rake -f #{RAKEFILE} check"
