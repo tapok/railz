@@ -7,6 +7,8 @@ dependencies:
   pre:
     - ruby -v
     - gem install bundler rake
+  override:
+    - bundle install  
 
 test:
   override:
