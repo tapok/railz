@@ -1,3 +1,21 @@
-test:
+machine:
+  environment:
+    BUNDLE_GEMFILE: Gemfile.circle
+    RAKEFILE: Rakefile.circle
+
+dependencies:
+  cache_directories:
+    - ~/.rvm/gems/ruby-1.9.3-p448
+  pre:
+    - ruby -v
+    - gem install bundler rake
   override:
-    - env #patterns=lib,app rake rubocop
+    - bundle install  
+
+database:
+  override:
+    - env
+
+test:
+  override: 
+    - "PATTERNS=$(git diff --name-only --no-merges master..) bundle exec rake -f $RAKEFILE check"
