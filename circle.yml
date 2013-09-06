@@ -2,7 +2,7 @@ machine:
   environment:
     BUNDLE_GEMFILE: Gemfile.circle
     RAKEFILE: Rakefile.circle
-    DEFAULT_BRANCH: master
+    DEFAULT_BRANCH: refs/remotes/origin/master
 
 dependencies:
   cache_directories:
@@ -19,5 +19,4 @@ database:
 
 test:
   override: 
-    #- "PATTERNS=$(git diff --name-only --no-merges $DEFAULT_BRANCH..$(git rev-parse --abbrev-ref HEAD) | grep -E '[[:punct:]](rb|rake)$' | tr '\n' ',') bundle exec rake -f $RAKEFILE check"
-    - "echo \"$(git diff --name-only --no-merges $DEFAULT_BRANCH..$(git rev-parse --abbrev-ref HEAD))\""
+    - "PATTERNS=$(git diff --name-only --no-merges $DEFAULT_BRANCH..$(git rev-parse --abbrev-ref HEAD) | grep -E '[[:punct:]](rb|rake)$' | tr '\n' ',') bundle exec rake -f $RAKEFILE check"
