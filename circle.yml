@@ -2,6 +2,7 @@ machine:
   environment:
     BUNDLE_GEMFILE: Gemfile.circle
     RAKEFILE: Rakefile.circle
+    DEFAULT_BRANCH: master
 
 dependencies:
   cache_directories:
@@ -18,4 +19,4 @@ database:
 
 test:
   override: 
-    - "PATTERNS=$(git diff --name-only --no-merges master..) bundle exec rake -f $RAKEFILE check"
+    - "PATTERNS=git diff --name-only --no-merges $DEFAULT_BRANCH..$(git rev-parse --abbrev-ref HEAD) bundle exec rake -f $RAKEFILE check"
