@@ -19,4 +19,4 @@ database:
 
 test:
   override: 
-    - "PATTERNS=$(git diff --name-only --no-merges $DEFAULT_BRANCH..$(git rev-parse --abbrev-ref HEAD)) bundle exec rake -f $RAKEFILE check"
+    - "PATTERNS=$(git diff --name-only --no-merges $DEFAULT_BRANCH..$(git rev-parse --abbrev-ref HEAD) | grep -E '\.(rb|rake)' | tr '\n' ',') bundle exec rake -f $RAKEFILE check"
